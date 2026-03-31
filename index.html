@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivekraj Rampelli | Portfolio</title>
+    <style>
+        :root {
+            --bg: #f4efe8;
+            --surface: rgba(255, 250, 245, 0.78);
+            --surface-strong: #fffaf5;
+            --text: #1f2933;
+            --muted: #52606d;
+            --line: rgba(31, 41, 51, 0.1);
+            --accent: #c75b39;
+            --accent-dark: #8c3419;
+            --accent-soft: #f7d9cc;
+            --ink: #113b53;
+            --shadow: 0 24px 60px rgba(72, 53, 38, 0.14);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --max-width: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background:
+                radial-gradient(circle at top left, rgba(199, 91, 57, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(17, 59, 83, 0.15), transparent 32%),
+                linear-gradient(180deg, #fbf5ef 0%, #f4efe8 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(8px);
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: -2;
+            animation: drift 18s ease-in-out infinite;
+        }
+
+        .orb-one {
+            width: 220px;
+            height: 220px;
+            top: 11%;
+            left: -40px;
+            background: rgba(199, 91, 57, 0.16);
+        }
+
+        .orb-two {
+            width: 280px;
+            height: 280px;
+            right: -60px;
+            top: 38%;
+            background: rgba(17, 59, 83, 0.14);
+            animation-delay: -6s;
+        }
+
+        .orb-three {
+            width: 180px;
+            height: 180px;
+            left: 40%;
+            bottom: 5%;
+            background: rgba(247, 217, 204, 0.9);
+            animation-delay: -11s;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(31, 41, 51, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(31, 41, 51, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 24px auto 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 22px;
+            background: rgba(255, 250, 245, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(18px);
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(72, 53, 38, 0.08);
+            position: sticky;
+            top: 18px;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.98rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(199, 91, 57, 0.28);
+        }
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .nav a {
+            padding: 8px 12px;
+            border-radius: 999px;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .nav a.active,
+        .nav a:hover {
+            background: rgba(17, 59, 83, 0.08);
+            color: var(--ink);
+        }
+
+        .status-strip {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr 0.7fr;
+            gap: 14px;
+        }
+
+        .status-card {
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: rgba(255, 250, 245, 0.86);
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 14px 30px rgba(72, 53, 38, 0.08);
+        }
+
+        .status-card small {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-dark);
+            margin-bottom: 6px;
+        }
+
+        .status-card strong {
+            display: block;
+            font-size: 1.12rem;
+        }
+
+        .hero {
+            margin-top: 28px;
+            padding: 42px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, rgba(255, 250, 245, 0.88), rgba(247, 217, 204, 0.5));
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            right: -60px;
+            top: -60px;
+            background: radial-gradient(circle, rgba(17, 59, 83, 0.16), transparent 68%);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--ink);
+            font-size: 0.86rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 0.95;
+            margin-bottom: 18px;
+            max-width: 10ch;
+        }
+
+        .hero-copy p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 56ch;
+        }
+
+        .hero-actions {
+            margin-top: 28px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 999px;
+            font-size: 0.98rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .button.primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            box-shadow: 0 16px 32px rgba(199, 91, 57, 0.28);
+        }
+
+        .button.secondary {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(17, 59, 83, 0.1);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-panel {
+            align-self: stretch;
+            background: rgba(17, 59, 83, 0.94);
+            color: #fef6ef;
+            border-radius: 24px;
+            padding: 28px;
+            display: grid;
+            gap: 18px;
+            position: relative;
+        }
+
+        .hero-panel::before {
+            content: "";
+            position: absolute;
+            inset: auto -30px -40px auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(247, 217, 204, 0.22), transparent 65%);
+        }
+
+        .panel-label {
+            color: rgba(254, 246, 239, 0.72);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            color: rgba(254, 246, 239, 0.78);
+            font-size: 0.92rem;
+        }
+
+        .section {
+            margin-top: 26px;
+            padding: 34px;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(18px);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 0.88rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            margin-bottom: 10px;
+        }
+
+        .section h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 14px;
+        }
+
+        .section p {
+            color: var(--muted);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 24px;
+        }
+
+        .card {
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            background: var(--surface-strong);
+            border: 1px solid var(--line);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .metric-card {
+            padding: 22px 18px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 217, 204, 0.4));
+            border: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .metric-card strong {
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .metric-card span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .pill-row,
+        .timeline,
+        .focus-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .pill,
+        .focus-item {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--line);
+            color: var(--ink);
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            flex-direction: column;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--line);
+        }
+
+        .timeline-item summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .timeline-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .timeline-item[open] {
+            box-shadow: 0 16px 28px rgba(17, 59, 83, 0.08);
+        }
+
+        .timeline-item .detail-body {
+            margin-top: 10px;
+            color: var(--muted);
+        }
+
+        .timeline-item ul {
+            margin-top: 10px;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .timeline-item li + li {
+            margin-top: 6px;
+        }
+
+        .timeline-item strong {
+            display: block;
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item span {
+            display: block;
+            color: var(--accent-dark);
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+        }
+
+        .cert-banner {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--ink), #1a5a7a);
+            color: #fff8f1;
+            display: grid;
+            gap: 14px;
+        }
+
+        .cert-banner p {
+            color: rgba(255, 248, 241, 0.8);
+        }
+
+        .quote {
+            font-size: 1.22rem;
+            color: var(--ink);
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+            margin-top: 22px;
+        }
+
+        .toolkit-shell {
+            margin-top: 24px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.78);
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--ink);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .tool-card {
+            padding: 22px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid var(--line);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .tool-card.hidden {
+            display: none;
+        }
+
+        .tool-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--ink);
+        }
+
+        .tool-card span {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent-dark);
+            font-size: 0.9rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .ghost-button {
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink);
+            padding: 12px 16px;
+            border-radius: 999px;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .copy-note {
+            margin-top: 10px;
+            color: var(--accent-dark);
+            font-size: 0.92rem;
+            min-height: 1.2em;
+        }
+
+        .footer {
+            margin-top: 22px;
+            padding: 28px 20px 16px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @keyframes revealUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(18px, -24px, 0) scale(1.05);
+            }
+        }
+
+        .hero,
+        .section {
+            animation: revealUp 0.75s ease both;
+        }
+
+        .section:nth-of-type(2) {
+            animation-delay: 0.08s;
+        }
+
+        .section:nth-of-type(3) {
+            animation-delay: 0.16s;
+        }
+
+        .section:nth-of-type(4) {
+            animation-delay: 0.24s;
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .grid-2,
+            .status-strip,
+            .metrics-grid,
+            .toolkit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            .topbar {
+                border-radius: 28px;
+                align-items: flex-start;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                width: min(calc(100% - 20px), var(--max-width));
+                margin-top: 10px;
+            }
+
+            .topbar,
+            .hero,
+            .section {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">VR</div>
+                <div>
+                    <strong>Vivekraj Rampelli</strong><br>
+                    <span>Professional Portfolio</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#focus">Focus</a>
+                <a href="#connect">Connect</a>
+            </nav>
+        </header>
+
+        <section class="status-strip">
+            <div class="status-card">
+                <small>Current Direction</small>
+                <strong>Driving SAP manufacturing solutions with a project-delivery mindset</strong>
+            </div>
+            <div class="status-card">
+                <small>Open To</small>
+                <strong>ERP, SAP and solution architecture opportunities</strong>
+            </div>
+            <div class="status-card">
+                <small>Location</small>
+                <strong>Cary, North Carolina</strong>
+            </div>
+        </section>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <div class="eyebrow">Portfolio built from LinkedIn profile</div>
+                    <h1>Vivekraj Rampelli</h1>
+                    <p>
+                        SAP Functional Analyst focused on solution architecture, ERP delivery, and manufacturing transformation
+                        across SAP PP, QM, and PM. This portfolio highlights experience spanning ABB, CRH, IT Automation LLC,
+                        Accenture, and academic research at the University of North Texas at Dallas.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="https://www.linkedin.com/in/vivekraj14" target="_blank" rel="noreferrer">View LinkedIn</a>
+                        <a class="button secondary" href="#focus">Current Focus</a>
+                    </div>
+                </div>
+
+                <aside class="hero-panel">
+                    <div>
+                        <div class="panel-label">Highlights</div>
+                        <p>
+                            Building capability at the intersection of project execution, process understanding,
+                            and manufacturing-oriented systems knowledge.
+                        </p>
+                    </div>
+                    <div class="panel-grid">
+                        <div class="stat">
+                            <strong>Current Role</strong>
+                            <span>Functional Analyst at ABB</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Domain Focus</strong>
+                            <span>SAP PP, QM, PM and ERP integration</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Manufacturing ERP</strong>
+                            <span>Production planning, master data, and UAT support</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Growth Path</strong>
+                            <span>Solution architecture and technical project leadership</span>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="section" id="about">
+                <div class="section-title">About</div>
+                <h2>Professional presence with a growth-oriented mindset</h2>
+                <p>
+                    Vivekraj Rampelli is a SAP ERP Functional Analyst with 3+ years of experience specializing in
+                    Production Planning, Quality Management, and Plant Maintenance in manufacturing environments.
+                    His work centers on translating business requirements into scalable SAP solutions, supporting
+                    end-to-end ERP delivery, and improving cross-functional business processes.
+                </p>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Core strengths</h3>
+                        <p>
+                            Strong across solution design, cross-system integration, manufacturing process support,
+                            and project execution in enterprise ERP landscapes.
+                        </p>
+                        <div class="pill-row">
+                            <span class="pill">SAP PP</span>
+                            <span class="pill">SAP QM</span>
+                            <span class="pill">SAP PM</span>
+                            <span class="pill">Solution Architecture</span>
+                            <span class="pill">Project Management</span>
+                            <span class="pill">Azure SQL</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Professional summary</h3>
+                        <p>
+                            Experienced in make-to-order and make-to-stock scenarios, MRP, production orders,
+                            master data, UAT, clean-core aligned enhancements, and integration planning across ERP systems.
+                        </p>
+                        <div class="quote">
+                            Focused on the intersection of business processes, system design, integration strategy, and delivery ownership.
+                        </div>
+                    </div>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <strong class="count" data-target="3">0</strong>
+                        <span>Years of SAP-focused experience</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong class="count" data-target="20">0</strong>
+                        <span>Change requests and enhancements delivered</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong class="count" data-target="10">0</strong>
+                        <span>Manufacturing solutions designed and validated</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong class="count" data-target="100">0</strong>
+                        <span>ETL workflows built across enterprise systems</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="experience">
+                <div class="section-title">Experience Story</div>
+                <h2>A concise portfolio narrative for recruiters and hiring teams</h2>
+                <p>
+                    This experience timeline is now based on the LinkedIn profile PDF and resume you shared, so the content below
+                    reflects your actual professional history.
+                </p>
+                <div class="timeline">
+                    <details class="timeline-item" open>
+                        <summary>
+                            <span>October 2025 - Present</span>
+                            <strong>ABB - Functional Analyst</strong>
+                            <p>Manufacturing support, SAP PP process ownership, and integration coordination.</p>
+                        </summary>
+                        <div class="detail-body">
+                            Gather business requirements for SAP PP manufacturing processes across plants and support execution design.
+                            <ul>
+                                <li>Support BOMs, routings, work centers, and production versions.</li>
+                                <li>Resolve production order issues using SAP SOLMAN and ServiceNow.</li>
+                                <li>Coordinate SAP PP integration with QM and PM modules.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="timeline-item">
+                        <summary>
+                            <span>May 2025 - October 2025</span>
+                            <strong>CRH - Master Data Analyst</strong>
+                            <p>Plant master data governance and manufacturing data quality support.</p>
+                        </summary>
+                        <div class="detail-body">
+                            Governed SAP PP, QM, and PM master data and supported data standardization across manufacturing plants.
+                            <ul>
+                                <li>Created and updated materials, BOMs, routings, and work centers.</li>
+                                <li>Validated data during plant onboarding and org changes.</li>
+                                <li>Supported testing and transport validation for master data changes.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="timeline-item">
+                        <summary>
+                            <span>July 2024 - May 2025</span>
+                            <strong>IT Automation LLC - SAP Functional Analyst / Functional Data Analyst</strong>
+                            <p>SAP functional solutioning, KPI alignment, and data engineering collaboration.</p>
+                        </summary>
+                        <div class="detail-body">
+                            Translated business needs into SAP functional specifications for manufacturing operations.
+                            <ul>
+                                <li>Delivered 20+ change requests and enhancements.</li>
+                                <li>Designed and validated 10+ SAP IS solutions.</li>
+                                <li>Managed ETL pipelines with Databricks and Snowflake.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="timeline-item">
+                        <summary>
+                            <span>August 2022 - December 2023</span>
+                            <strong>University of North Texas at Dallas - Research Assistant</strong>
+                            <p>Graduate research and analytics-focused academic contribution.</p>
+                        </summary>
+                        <div class="detail-body">
+                            Supported research initiatives while building graduate-level expertise in information technology, analytics,
+                            and systems thinking.
+                        </div>
+                    </details>
+                    <details class="timeline-item">
+                        <summary>
+                            <span>April 2021 - August 2022</span>
+                            <strong>Accenture - Application Development Analyst / SAP Functional Consultant</strong>
+                            <p>Implementation delivery, ETL engineering, BI reporting, and business support.</p>
+                        </summary>
+                        <div class="detail-body">
+                            Contributed to SAP ERP implementations for a global pharmaceutical client.
+                            <ul>
+                                <li>Built and maintained 100+ ETL workflows using PL/SQL and Oracle.</li>
+                                <li>Created Power BI dashboards for operations and KPI reporting.</li>
+                                <li>Facilitated issue resolution and end-user training.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="section" id="focus">
+                <div class="section-title">Current Focus</div>
+                <h2>Actively investing in certifications that strengthen delivery and manufacturing knowledge</h2>
+                <p>
+                    Ongoing professional development is a visible part of this portfolio and reflects a commitment
+                    to both project leadership and production planning expertise.
+                </p>
+                <div class="cert-banner">
+                    <strong>Currently working on PMP Certification and SAP PP Certification</strong>
+                    <p>
+                        These next certifications build on existing SAP and cloud credentials while strengthening
+                        project delivery leadership and production planning expertise.
+                    </p>
+                </div>
+                <div class="focus-list">
+                    <span class="focus-item">PMP Certification in progress</span>
+                    <span class="focus-item">SAP PP Certification in progress</span>
+                    <span class="focus-item">Solution Architect career path</span>
+                    <span class="focus-item">Technical Project Leadership growth</span>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Verified certifications</h3>
+                        <div class="pill-row">
+                            <span class="pill">AWS Cloud Practitioner</span>
+                            <span class="pill">AWS Certified Data Engineer</span>
+                            <span class="pill">Foundations: Data, Data, Everywhere</span>
+                            <span class="pill">MariaDB Database Operations</span>
+                            <span class="pill">Pandas</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Technical stack</h3>
+                        <div class="pill-row">
+                            <span class="pill">SAP SOLMAN</span>
+                            <span class="pill">SQL</span>
+                            <span class="pill">PL/SQL</span>
+                            <span class="pill">Power BI</span>
+                            <span class="pill">Tableau</span>
+                            <span class="pill">Databricks</span>
+                            <span class="pill">Snowflake</span>
+                            <span class="pill">ServiceNow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolkit-shell">
+                    <h3>Explore the toolkit</h3>
+                    <div class="filter-row">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="sap">SAP</button>
+                        <button class="filter-btn" data-filter="data">Data</button>
+                        <button class="filter-btn" data-filter="delivery">Delivery</button>
+                    </div>
+                    <div class="toolkit-grid">
+                        <div class="tool-card" data-category="sap">
+                            <strong>SAP PP / QM / PM</strong>
+                            <p>Production planning, quality management, plant maintenance, and manufacturing operations support.</p>
+                            <span>Category: SAP</span>
+                        </div>
+                        <div class="tool-card" data-category="sap delivery">
+                            <strong>SAP SOLMAN + ServiceNow</strong>
+                            <p>Issue tracking, support workflows, test coordination, and change request management.</p>
+                            <span>Category: SAP, Delivery</span>
+                        </div>
+                        <div class="tool-card" data-category="data">
+                            <strong>Databricks + Snowflake</strong>
+                            <p>ETL pipeline support, data movement, and enterprise analytics foundations.</p>
+                            <span>Category: Data</span>
+                        </div>
+                        <div class="tool-card" data-category="data">
+                            <strong>SQL / PL-SQL / Power BI / Tableau</strong>
+                            <p>Data analysis, reporting, dashboard design, and KPI visibility for business teams.</p>
+                            <span>Category: Data</span>
+                        </div>
+                        <div class="tool-card" data-category="delivery">
+                            <strong>UAT + Change Management</strong>
+                            <p>Business validation, defect handling, stakeholder coordination, and delivery readiness.</p>
+                            <span>Category: Delivery</span>
+                        </div>
+                        <div class="tool-card" data-category="delivery">
+                            <strong>Solution Architecture Mindset</strong>
+                            <p>Interface design, process boundaries, clean-core awareness, and scalable ERP solution thinking.</p>
+                            <span>Category: Delivery</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="connect">
+                <div class="section-title">Connect</div>
+                <h2>Use this page as your professional landing site</h2>
+                <p>
+                    This portfolio is now aligned to your LinkedIn profile and resume, giving visitors a clear snapshot
+                    of your SAP, ERP, and manufacturing systems background.
+                </p>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Profile details</h3>
+                        <p>
+                            Cary, North Carolina<br>
+                            Email: vivekrajrampelli14@gmail.com<br>
+                            LinkedIn: <a href="https://www.linkedin.com/in/vivekraj14" target="_blank" rel="noreferrer">www.linkedin.com/in/vivekraj14</a>
+                        </p>
+                        <div class="contact-actions">
+                            <button class="ghost-button" id="copy-email">Copy Email</button>
+                            <a class="button secondary" href="https://www.linkedin.com/in/vivekraj14" target="_blank" rel="noreferrer">Open LinkedIn</a>
+                        </div>
+                        <div class="copy-note" id="copy-note"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Education and publication</h3>
+                        <p>
+                            Master's degree in Information Science/Studies from the University of North Texas,
+                            B.Tech in Electrical and Electronics Engineering from CVR College of Engineering,
+                            and publication: <em>Healthcare Analytics using Big Data Technique</em>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; <span id="year"></span> Vivekraj Rampelli. Built as a personal portfolio website.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const counts = document.querySelectorAll(".count");
+        const countObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const el = entry.target;
+                const target = Number(el.dataset.target);
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 28));
+
+                const tick = () => {
+                    current += step;
+                    if (current >= target) {
+                        el.textContent = target + "+";
+                        return;
+                    }
+                    el.textContent = current + "+";
+                    requestAnimationFrame(tick);
+                };
+
+                tick();
+                observer.unobserve(el);
+            });
+        }, { threshold: 0.45 });
+
+        counts.forEach((count) => countObserver.observe(count));
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const toolCards = document.querySelectorAll(".tool-card");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.filter;
+
+                filterButtons.forEach((btn) => btn.classList.remove("active"));
+                button.classList.add("active");
+
+                toolCards.forEach((card) => {
+                    const category = card.dataset.category;
+                    const shouldShow = filter === "all" || category.includes(filter);
+                    card.classList.toggle("hidden", !shouldShow);
+                });
+            });
+        });
+
+        const navLinks = document.querySelectorAll(".nav a");
+        const sections = document.querySelectorAll("main .section");
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                navLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+                });
+            });
+        }, { threshold: 0.35 });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        const copyButton = document.getElementById("copy-email");
+        const copyNote = document.getElementById("copy-note");
+
+        copyButton.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText("vivekrajrampelli14@gmail.com");
+                copyNote.textContent = "Email copied to clipboard.";
+            } catch (error) {
+                copyNote.textContent = "Clipboard access not available in this browser.";
+            }
+        });
+    </script>
+</body>
+</html>
